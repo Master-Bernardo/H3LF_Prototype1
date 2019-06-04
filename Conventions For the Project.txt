@@ -1,0 +1,25 @@
+Animations:
+
+- all animations which should be scaled in tame should consist of 30 frames in lender
+
+
+naming convention for the animation in blender is: 
+
+
+for movement:
+
+Stance_Idle/CIdle_MovementName
+
+CIdle stands for CombatIdle
+
+so for running in combat:  1HSword1_CombatIdle_Running
+for standing outside of combat: Spear&Shield1_Idle_Standing
+
+not every stance needs an idle stand, some may share the default one
+
+
+for combat movement:
+
+Stance_MovementName_MovementType
+
+1HSword1_Stab1_PrepareAttack
