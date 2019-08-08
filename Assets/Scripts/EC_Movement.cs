@@ -60,7 +60,7 @@ public class EC_Movement : EntityComponent
         {
             nextMovementUpdateTime += movementUpdateIntervall;
 
-            Profiler.BeginSample("MovementUpdateAnim");
+            //Profiler.BeginSample("MovementUpdateAnim");
 
             float animationValue = Mathf.Lerp(animationValueLastTime, agent.velocity.magnitude, smoothRate * deltaTime);
             // Debug.Log("actual value: " + agent.velocity.magnitude);
@@ -72,8 +72,8 @@ public class EC_Movement : EntityComponent
 
 
 
-            Profiler.EndSample();
-            Profiler.BeginSample("LookAt");
+            //Profiler.EndSample();
+            //Profiler.BeginSample("LookAt");
 
             if (lookAt)
             {
@@ -82,7 +82,7 @@ public class EC_Movement : EntityComponent
                     RotateTo(targetToLookAt.position - myTransform.position, time);
                 }
             }
-            Profiler.EndSample();
+            //Profiler.EndSample();
 
 
         }
@@ -98,14 +98,14 @@ public class EC_Movement : EntityComponent
     public void RotateTo(Vector3 direction, float time)
     {
         direction.y = 0;
-        Profiler.BeginSample("LookRotation");
+        //Profiler.BeginSample("LookRotation");
         Quaternion desiredLookRotation = Quaternion.LookRotation(direction);
-        Profiler.EndSample();
+        //Profiler.EndSample();
         //because we want the same speed as the agent, which has its angular speed saved as degrees per second we use the rotaate towards function
-        Profiler.BeginSample("Setotation");
+        //Profiler.BeginSample("Setotation");
         myTransform.rotation = Quaternion.RotateTowards(myTransform.rotation, desiredLookRotation, angularSpeed * time - lastRotationTime);
         lastRotationTime = time;
-        Profiler.EndSample();
+        //Profiler.EndSample();
     }
 
     //for now simple moveTo without surface ship or flying

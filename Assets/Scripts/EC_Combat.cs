@@ -138,7 +138,7 @@ public class EC_Combat : EntityComponent
     //we choose who should be attacked and whit which attack
     public void MeleeAttack(GameEntity target, CA_MeleeAttack attack)
     {
-        Profiler.BeginSample("MeleeAttackBeginn");
+        //Profiler.BeginSample("MeleeAttackBeginn");
 
         currentAttack = attack;
 
@@ -149,13 +149,13 @@ public class EC_Combat : EntityComponent
         }
 
 
-        Profiler.EndSample();
+        //Profiler.EndSample();
 
         movement.Stop();
 
-        Profiler.BeginSample("PrepareMeleeAttack");
+        //Profiler.BeginSample("PrepareMeleeAttack");
         MA_PrepareMeleeAttack();
-        Profiler.EndSample();
+        //Profiler.EndSample();
     }
 
     public void AbortMeleeAttack()

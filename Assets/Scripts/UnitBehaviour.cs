@@ -108,7 +108,7 @@ public class MeleeAttackBehaviour: UnitBehaviour
 
     public override void BehaviourUpdate()
     {
-        Profiler.BeginSample("BehaviourUpdate");
+        //Profiler.BeginSample("BehaviourUpdate");
         #region debug
         if (Input.GetKeyDown(KeyCode.B))
         {
@@ -264,6 +264,6 @@ public class MeleeAttackBehaviour: UnitBehaviour
 
         nearestEnemyLastFrame = nearestEnemy;
 
-        Profiler.EndSample();
+       // Profiler.EndSample();
     }
 }

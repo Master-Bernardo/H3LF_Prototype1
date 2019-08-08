@@ -30,6 +30,9 @@ public class AnimatorOptimiser : MonoBehaviour
     int animatorsOnScreen = 0;
     int animatorsOnScreenLastFrame;
 
+    [SerializeField]
+    float graphicsLODBias;
+
 
 
     List<AnimatorRendererPair> visibleAnimators = new List<AnimatorRendererPair>();
@@ -43,6 +46,8 @@ public class AnimatorOptimiser : MonoBehaviour
 
     public void Awake() // wir setzen sicher dass es immer existier aber immer nur eins
     {
+        QualitySettings.lodBias = graphicsLODBias;
+
         if (Instance != null)
         {
             DestroyImmediate(Instance); // es kann passieren wenn wir eine neue Scene laden dass immer noch eine Instanz existiert
@@ -57,12 +62,11 @@ public class AnimatorOptimiser : MonoBehaviour
         animatorGroupsLastFrame = 1;
     }
 
+
+
     #endregion
 
-    /*public void AddAnimator(AnimatorRendererPair animRenderPair)
-    {
-        allAnimators.Add(animRenderPair);
-    }*/
+
 
     public void AnimatorEntersCameraView(AnimatorRendererPair animRenderPair)
     {

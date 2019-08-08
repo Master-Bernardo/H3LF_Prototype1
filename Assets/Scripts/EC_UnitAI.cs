@@ -78,7 +78,7 @@ public class EC_UnitAI : EntityComponent
 
     public override void UpdateEntityComponent(float deltaTime, float time)
     {
-        Profiler.BeginSample("UnitAI");
+       // Profiler.BeginSample("UnitAI");
         //UpdateBehaviour(); later on we want to chekc if we would like to change our current bahaviour before acting according to him
 
         if (!posessedByPlayer)
@@ -100,7 +100,7 @@ public class EC_UnitAI : EntityComponent
         {
             currentBehaviour = meleeAttackBehaviour;
         }
-        Profiler.EndSample();
+        //Profiler.EndSample();
         //Debug.Log((currentBehaviour as MeleeAttackBehaviour).meleeAttackBehaviourState);
     }
 

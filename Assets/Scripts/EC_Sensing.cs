@@ -53,14 +53,14 @@ public class EC_Sensing : EntityComponent
     //should not be lodded, is already lodded, optimise searching algorthm - hierarchical search using squads and distance check
     public override void UpdateEntityComponent(float deltaTime, float time)
     {
-        Profiler.BeginSample("Sensing");
+        //Profiler.BeginSample("Sensing");
         if (time > nextScanWorldTime)
         {
             nextScanWorldTime += scanWorldInterval;
 
             ScanSurroundingUnits();
         }
-        Profiler.EndSample();
+       // Profiler.EndSample();
     }
 
     void ScanSurroundingUnits()
@@ -69,7 +69,7 @@ public class EC_Sensing : EntityComponent
         //if we use normal sensing , the unit itself will perform a sphere overlap and search the resulting collection for the nearest
         if (!hierarchicalSquadSensing)
         {
-            Profiler.BeginSample("SensingUpdateOverlapSphereNotHierarchical");
+           // Profiler.BeginSample("SensingUpdateOverlapSphereNotHierarchical");
             //one way, if there are not too many units
             int layerMask = 0;
 
@@ -101,13 +101,13 @@ public class EC_Sensing : EntityComponent
 
             if (nearestEnemyCol != null) nearestEnemy = nearestEnemyCol.GetComponent<GameEntity>();
 
-            Profiler.EndSample();
+           // Profiler.EndSample();
         }
         else
         {
             //if hierarchical sensing is on, we get the colleciton of nearestUnits from the squad, which poerformas a sphere overlap and traverse this for the nearest -> better performance
 
-            Profiler.BeginSample("SensingUpdateHierarchical");
+            //Profiler.BeginSample("SensingUpdateHierarchical");
 
             surroundingEnemiesTransformsList = entity.squad.enemies;
 
@@ -150,7 +150,7 @@ public class EC_Sensing : EntityComponent
 
             if (nearestEnemyTransform != null) nearestEnemy = nearestEnemyTransform.GetComponent<GameEntity>();
 
-            Profiler.EndSample();
+           //Profiler.EndSample();
         }
         
 

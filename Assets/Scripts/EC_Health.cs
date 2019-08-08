@@ -19,8 +19,14 @@ public class EC_Health : EntityComponent
     public UnityEvent OnTakeDamage; //fnction assigned here gets called on die
 
     Transform myTransform;
+
     bool getBackToNormalColor = false;
     float timeToGetBackToNormalColor;
+    Color normalColor;
+    Color damagColor;
+
+    [Tooltip("for now used to change color on all the lods")]
+    public SkinnedMeshRenderer[] renders;
 
     public override void SetUpEntityComponent(GameEntity entity)
     {
@@ -28,6 +34,9 @@ public class EC_Health : EntityComponent
 
         currentHealth = maxHealth;
         myTransform = entity.myTransform;
+
+        normalColor = myTransform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color;
+        damagColor = new Color(1 - normalColor.r, 1 - normalColor.g, 1 - normalColor.b);
     }
 
     public override void UpdateEntityComponent(float deltaTime, float time)
@@ -54,9 +63,10 @@ public class EC_Health : EntityComponent
         OnTakeDamage.Invoke();
 
         //temporyli we change some colors
-        Color currentColor = myTransform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color;
-
-        myTransform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = new Color(1 - currentColor.r, 1 - currentColor.g, 1 - currentColor.b);
+        for (int i = 0; i < renders.Length; i++)
+        {
+            renders[i].material.color = damagColor;
+        }
 
         getBackToNormalColor = true;
         timeToGetBackToNormalColor = Time.time + 0.3f;
@@ -72,8 +82,9 @@ public class EC_Health : EntityComponent
 
     void GetBackToNormalColor()
     {
-        Color currentColor = myTransform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color;
-
-        myTransform.GetChild(0).GetChild(0).GetComponent<SkinnedMeshRenderer>().material.color = new Color(1 - currentColor.r, 1 - currentColor.g, 1 - currentColor.b);
+        for (int i = 0; i < renders.Length; i++)
+        {
+            renders[i].material.color = normalColor;
+        }
     }
 }
